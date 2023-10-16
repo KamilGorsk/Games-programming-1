@@ -1,0 +1,17 @@
+#Gets input from player, always an integer
+number = int(input("Give me a number:"))
+#if number is less than or equal to 100 its small
+if number <= 100:
+    print ("That's a small number")
+#elif number is bigger than 1000 and less than 1000 because python does this automatically
+elif number < 1000:
+    print ("That's not a big number yet")
+
+else: 
+    print ("That's what I call a big number")
+
+if number % 2 == 0: 
+    print ("The number is even")
+
+else:
+    print ("The number is odd")
