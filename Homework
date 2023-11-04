@@ -1,0 +1,13 @@
+def Modify_Monster_Name(name):
+    if len(name) <= 3:
+        ModifiedName = 'baby ' + name
+    elif name[-1] in 'aeiou':
+        ModifiedName = name + 'ling'
+    else:
+        ModifiedName = name + 'elle'
+    
+    return ModifiedName
+
+name = input("What is your monster's name?")
+ModifiedName = Modify_Monster_Name(name)
+print("Modified Monster Name:",ModifiedName)
