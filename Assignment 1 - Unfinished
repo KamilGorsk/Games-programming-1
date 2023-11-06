@@ -11,7 +11,7 @@ print("1. North entrance")
 print("2. West entrance")
 # Get the player's choice of entrance
 while True:
-     choice = input("Enter the number of the entrance you want to enter (1/2): ")
+     choice = input("Enter the number of the entrance you want to enter (N/W): ")
  
      if choice == 'N':
         print("You enter the North Entrance.")
