@@ -1,0 +1,39 @@
+# Welcome message
+print("Welcome to PLACEHOLDER")
+
+print("""   You came to the dungeon seeking glory and power as a lonesome mercenary, the coachman refused 
+        to drop you off close to the dungeon itself, you hop out the carriage and walk a long road 
+        to the malevolent dungeon.  """)
+
+print("You find yourself outside a cryptic dungeon with two entrances:")
+
+print("1. North entrance")
+print("2. West entrance")
+# Get the player's choice of entrance
+while True:
+     choice = input("Enter the number of the entrance you want to enter (1/2): ")
+ 
+     if choice == 'N':
+        print("You enter the North Entrance.")
+     elif choice == 'W':
+         print("You enter the West Entrance.")
+     else:
+         print("Invalid choice. Please enter N or W to choose an Entrance.")
+
+    sec = {}
+    for counter in enumerate(sections):
+        #print counter
+        index = counter [0]
+        long_name = counter [1] [1]
+        short_name = ''
+        for C in long_name
+            if C in ' /_ ': #Spaces and slashes to dashes
+                short_name = short_name + '-'
+            elif not C in ",'": #Don't use periods and apostrophes
+                short_name += C.lower() #Lowercase
+        sec[short_name] = index
+
+    dirs = { 0: ("North", "N", "n"),
+             1: ("South", "S", "s"),
+             2: ("West", "W", "w"),
+             3: ("East", "E", "e")}
