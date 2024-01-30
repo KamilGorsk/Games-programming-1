@@ -1,0 +1,380 @@
+# Game code Import various function libraries - time.sleep (insert time in seconds) pauses code helping me space out
+# text. This is better than using input () or raw_input () because it doesn't require the player to press enter which
+# makes for a smoother experience. This comment also serves as a reminder to myself.
+import time
+import random
+
+# Player's inventory. Remember .append is necessary to add stuff later.
+inventory = ["staff"]
+spells = ["Breaking"]
+
+# Monster's limbs with its respective health values
+monster_limbs = {
+    "Head": 20,
+    "Torso": 25,
+    "Left Arm": 10,
+    "Right Arm": 10,
+    "Left Leg": 15,
+    "Right Leg": 15,
+}
+
+# Player's health
+player_health = 100
+
+
+# Multiple functions to call later down the line to make code easier to look at and possibly re-use. Realized later that
+# doing it this way is more efficient/professional allegedly.
+def examine_tents():
+    print("You examine the tents near the main entrance.")
+    time.sleep(1)
+    print("These tents were likely used by archaeologists in the past. They are worn and torn, and some are collapsed.")
+    time.sleep(1)
+    print("You notice a faint smell of dampness, suggesting they've been exposed to the elements for a long time.")
+    time.sleep(1)
+    print("There doesn't seem to be anything valuable or useful inside the tents.")
+
+
+# Function for exploring the kitchen
+def explore_kitchen():
+    print("The room had small stools around a large wooden table covered in cobwebs and old stains. At the end of the "
+          "room, there were old cupboards and kitchen utilities that had collapsed on the ground. The other corner "
+          "had a row of wooden barrels.")
+    time.sleep(2)
+    print("What would you like to do in the kitchen?")
+    time.sleep(1)
+    print("1. Check the cupboards")
+    time.sleep(1)
+    print("2. Check the wooden barrels")
+    time.sleep(1)
+    print("3. Go back")
+
+    kitchen_choice = input("Enter the number of the option you want to choose: ").lower()
+
+    if kitchen_choice == "1":
+        check_cupboards()
+    elif kitchen_choice == "2":
+        print("You check the wooden barrels but find nothing of interest")
+        time.sleep(1)
+        # A choice with no items rewarded
+        handle_door_situation()
+    elif kitchen_choice == "3":
+        print("You go back from the kitchen.")
+    else:
+        print("Invalid choice. Please enter a number from 1 to 3.")
+
+
+# Function for checking the cupboard and giving the player their first item
+def check_cupboards():
+    print("You check the cupboards and find old wheat flour.")
+    inventory.append("Wheat Flour")
+    time.sleep(1)
+    print("You added old Wheat Flour to your inventory.")
+    handle_door_situation()
+
+
+# Function for checking the door which warns the player about the monster
+def check_door():
+    print("You cautiously check the closed door.")
+    time.sleep(2)
+    print(
+        "You hear faint, guttural noises coming from the other side, as if something is lurking just beyond the door.")
+    time.sleep(2)
+    print("A chill runs down your spine, warning you of potential danger.")
+    time.sleep(2)
+    print("What would you like to do?")
+    print("1. Open the door")
+    print("2. Go back to the main room")
+
+    door_choice = input("Enter the number of the option you want to choose: ").lower()
+
+    if door_choice == "1":
+        handle_door_situation()
+    elif door_choice == "2":
+        print("You decide not to tempt fate and go back to the main room.")
+    else:
+        print("Invalid choice. Please enter a number from 1 to 2.")
+        check_door()
+
+
+# Function for the door situation (main way to progress the story)
+def handle_door_situation():
+    print("\nSuddenly, the door shudders violently, as if something large is trying to force its way through. "
+          "Inhuman guttural sounds echo between the swings at the door.")
+
+    print("\nWhat do you want to do?")
+    time.sleep(1)
+    print("1. Hide in the kitchen")
+    time.sleep(1)
+    print("2. Hide in the room in front of you")
+    time.sleep(1)
+    print("3. Wait and see what it is")
+    time.sleep(1)
+    print("4. Run outside")
+    time.sleep(1)
+
+    response = input("Enter the number of the option you want to choose: ").lower()
+
+    if response == "1":
+        hide_in_kitchen()
+    elif response == "2":
+        hide_in_room()
+    elif response == "3":
+        wait_and_see()
+    elif response == "4":
+        run_outside()
+    else:
+        print("Invalid choice. Please enter a number from 1 to 4.")
+        handle_door_situation()
+
+
+# Function for hiding in the kitchen (Main option)
+def hide_in_kitchen():
+    print("You quickly waltzed inside the kitchen and pressed against a corner where you thought you could stay "
+          "hidden while still seeing what you were up against. The door crashed open. You saw a dark silhouette of a "
+          "gigantic malformed being push from the open doorway. The creature made gurgling noises as it slowly wandered"
+          "to the other room...")
+    time.sleep(5)
+    print("You used this chance to sneak past the thing to the dark corridor where it first came from. Only the "
+          "creature had clearly gotten used to the darkness as it sensed you the moment you got out of your hiding "
+          "spot.")
+    time.sleep(3)
+    print("You charged to the unknown darkness without a second thought.")
+    time.sleep(2)
+    print("You ran as fast as you could creating distance to the malformed beast with each step you couldn't see much"
+          "in the darkness, but a door frame that had light shining through its cracks caught your attention.")
+    time.sleep(1)
+    print("You tackled the door open and stumbled to an overgrown courtyard. Quickly glancing back at the dark "
+          "corridor, you noticed that the beast was nowhere to be seen. You figured that the last rays of the setting "
+          "sun still kept it at bay")
+    time.sleep(2)
+    print("You took a breather and slowly walked across the yard. The grass had taken a sickly yellow-ish colour and "
+          "the setting sun created ominous shadows at its rays hit the lone gallows standing at the center of the "
+          "enclosure")
+    time.sleep(2)
+    print("As you managed to focus your thoughts, you realized that there was an additional voice echoing in your head."
+          "Something or someone was calling you from the depths of this forsaken fortress.")
+    time.sleep(3)
+    print("There was something very curious about this echo. You needed to find its source. Not like you had a choice "
+          "but to delve deeper as the sun was rapidly setting down stripping you form the last barrier that kept the "
+          "murderous beast hiding in the shadows.")
+    time.sleep(3)
+    print("The courtyard led to another door to the darkness. You pushed forward...")
+    combat()
+
+
+# Describe malformed being differently for some spice
+def hide_in_room():
+    print("You hide in the room in front of you.")
+    time.sleep(3)
+    print("As you hide in the room, the monster's attention is drawn to your location. It finds you easily and "
+          "attacks with ferocity. There's no escape.")
+    time.sleep(1)
+    end_game("You were killed by the malformed creature.")
+
+
+# Function for the wait and see choice, Pycharm added global because I worked on combat system after, this was an ending
+# that led to instant demise for the player.
+def wait_and_see():
+    global player_health
+    print("You decide to wait and see what it is.")
+    time.sleep(3)
+    print("The monster breaks through the door and spots you immediately. It attacks without hesitation.")
+    time.sleep(1)
+    player_health -= 70
+    print(f"With its raw brute strength it pushes you over and you lose 50 health")
+    print("Your health is now", player_health)
+    combat()
+
+
+# Function for the run outside choice
+def run_outside():
+    print("You run outside.")
+    time.sleep(3)
+    print("You realise that it is better to not meddle with evils beyond human comprehension and end the expedition "
+          "early")
+    end_game("You safely leave the ruins wondering what could've been and how this act of cowardice will effect future"
+             "generations.")
+
+
+# Function to handle the combat encounter with a loop attached to it
+def is_monster_defeated():
+    return all(health <= 0 for health in monster_limbs.values())
+
+
+# A function for the monster dealing a random amount of damage from 5-10hp
+def monster_attack():
+    global player_health
+    # If the head is destroyed, end the game
+    if monster_limbs["Head"] <= 0:
+        end_game("You have defeated the malformed creature! Ridding the world of this malicious presence was the least"
+                 "that you could do. You have yet to find any relics of your religion. When will you come back to "
+                 "finish raiding the rest of this dungeon? For now, you leave the ruins safely and go back to your "
+                 "hometown to spread the news. Congratulations, you have beat Arx Fable")
+
+    damage = random.randint(5, 10)
+    print(f"The malformed creature attacks you and deals {damage} damage.")
+    player_health -= damage
+    print(f"Your health is now {player_health}.")
+
+
+# Main combat code
+def combat():
+    print("\nThe malformed creature is in front of you.")
+    time.sleep(1)
+    print("The creature has multiple limbs, each with its own health. You need to strategize your attacks.")
+
+    while True:
+        print("\nMonster Limbs:")
+        for limb, health in monster_limbs.items():
+            print(f"{limb}: {health} health")
+
+        print("\nPlayer Health:", player_health)
+        print("\nWhat would you like to do?")
+        print("1. Cast Breaking")
+        print("2. Attack with your staff")
+
+        choice_fight = input("Enter the number of the option you want to choose: ").lower().upper()
+
+        if choice_fight == "1":
+            cast_breaking()
+        elif choice_fight == "2":
+            attack_with_staff()
+            break
+        else:
+            print("Invalid choice. Please enter a number from 1 to 3.")
+
+        if is_monster_defeated():
+            print("You have defeated the malformed creature! Ridding the world of this malicious presence was the least"
+                  "that you could do. You have yet to find any relics of your religion when will you come back to "
+                  "finish raiding the rest of this dungeon you wonder, as for now you leave the ruins safely and go"
+                  "back to your hometown to spread the news.")
+            end_game("Congratulations, you have beat Arx Fable")
+
+        monster_attack()
+        if player_health <= 0:
+            end_game("You were killed by the malformed creature.")
+
+
+# Function to handle the Breaking spell
+def cast_breaking():
+    print("\nYou cast Breaking on a limb.")
+    limb_to_break = input(
+        "Enter the limb to destroy (e.g., 'Left Hand', 'Torso', 'Left Arm', 'Left Leg'): ").capitalize()
+
+    # Convert "Left Arm" to "Left Hand" or "Left Leg" to "Left Leg" because for some reason it won't work otherwise
+    if "Left Arm" in limb_to_break:
+        limb_to_break = "Left Hand"
+    elif "Right Arm" in limb_to_break:
+        limb_to_break = "Right Hand"
+    elif "Left Leg" in limb_to_break:
+        limb_to_break = "Left Leg"
+    elif "Right Leg" in limb_to_break:
+        limb_to_break = "Right Leg"
+
+    if limb_to_break in monster_limbs:
+        print(f"You cast Breaking on the {limb_to_break} and deal {monster_limbs[limb_to_break]} damage.")
+        monster_limbs[limb_to_break] = 0
+        print(f"The {limb_to_break} is destroyed.")
+    else:
+        print("Invalid limb choice.")
+
+
+# Function to handle the staff attack
+def attack_with_staff():
+    while True:
+        limb_to_damage = input(
+            "Enter the limb to damage (e.g., 'Left Hand', 'Torso', 'Left Arm', 'Left Leg'): ").capitalize()
+
+        # Convert "Left Arm" to "Left Hand" or "Left Leg" to "Left Leg" because for some reason it won't work otherwise
+        if "Left Arm" in limb_to_damage:
+            limb_to_damage = "Left Hand"
+        elif "Right Arm" in limb_to_damage:
+            limb_to_damage = "Right Hand"
+        elif "Left Leg" in limb_to_damage:
+            limb_to_damage = "Left Leg"
+        elif "Right Leg" in limb_to_damage:
+            limb_to_damage = "Right Leg"
+
+        if limb_to_damage in monster_limbs:
+            damage = random.randint(5, 15)
+            print(f"You attack the {limb_to_damage} with your staff and deal {damage} damage.")
+            monster_limbs[limb_to_damage] -= damage
+            if monster_limbs[limb_to_damage] <= 0:
+                print(f"The {limb_to_damage} is destroyed.")
+            else:
+                print(f"The {limb_to_damage} is still alive with {monster_limbs[limb_to_damage]} health.")
+            break
+        else:
+            print("Invalid limb choice.")
+
+
+# Important function that will just exit the program for different endings
+def end_game(message):
+    print("\nGame Over!")
+    print(message)
+    exit()
+
+
+# Start of the game
+print("Welcome to Arx Fable, you play as an occultist trying to find various relics of old in relevance to your god of"
+      "destruction. You will die a lot, be prepared.")
+time.sleep(1)
+print("You got to a set of old ruins, or they looked more like a measly pile of rubble now. If it wasn't for the "
+      "Dreadful aura emanating from deep within, you couldn't tell there was anything remarkable about this place "
+      "whatsoever... ")
+time.sleep(4)
+print("Near the main entrance arch, there was a makeshift archaeological site with the tents and digging equipment."
+      "The site looked abandoned. On the other side, there was a side entrance to the dungeons with stairs leading down"
+      "to the darkness below.")
+time.sleep(1)
+print("1. Main entrance")
+time.sleep(1)
+print("2. Side entrance")
+time.sleep(1)
+
+# Get the player's choice of entrance
+while True:
+    choice = input("Enter the letter of the entrance you want to enter or examine the tents (M/S/E): ").upper()
+
+    if choice == "M":
+        print("The moment you stepped inside the dungeon walls, you felt immense otherworldly pressure. You understood"
+              "that the place would drain any normal person to the brink of madness and starvation in a matter of mere"
+              "hours. You had to be efficient about this. Even if the day was still bright, the darkness seemed to "
+              "suffocate all light and you could barely see anything ahead of you. You lit up a torch")
+        while True:
+            print("\nYou stood at the vestibule of the dungeons. To your left you saw a doorway leading to what "
+                  "seemed like a kitchen. There was a small room with old wooden furniture in front of you and to "
+                  "your right there was a closed door.")
+
+            print("What would you like to do?")
+            print("1. Explore the kitchen")
+            time.sleep(1)
+            print("2. Check the door")
+            time.sleep(1)
+            print("3. Go back outside")
+            time.sleep(1)
+
+            main_choice = input("Enter the number of the option you want to choose: ").lower()
+
+            if main_choice == "1":
+                explore_kitchen()
+            elif main_choice == "2":
+                check_door()
+            elif main_choice == "3":
+                print("You go back outside.")
+                break
+            else:
+                print("Invalid choice. Please enter a number from 1 to 3.")
+    elif choice == "S":
+        print("You enter the Side entrance.")
+        time.sleep(2)
+        print(
+            "As you step into the side entrance, the door slams shut behind you, trapping you in darkness. You feel a "
+            "chill down your spine as you realize there's no way back. Unfortunately, this dark path leads to your "
+            "demise.")
+        time.sleep(2)
+        end_game("You are trapped and perish in the darkness.")
+    elif choice == "E":
+        examine_tents()
+    else:
+        print("Invalid choice. Please enter a letter M/S/E")
