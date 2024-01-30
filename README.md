@@ -1,1 +1,1 @@
-It's not unfinished, I just couldn't rename it, I forgot to push code 😭.
+I forgot to push the code earlier 😭.
